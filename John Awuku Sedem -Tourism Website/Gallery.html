@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery - Discover Ghana</title>
+    <link rel="stylesheet" href="Gallery.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><span>Tourism:</span><span class="yellow">Ghana Photo </span><span class="green">Gallery </span></h1>
+            <p>Explore the beauty, culture, and wildlife of Ghana through our stunning photo collection</p>
+        </div>
+    </header>
+    
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">DI BTEC PROJECT <span>LEVEL 3</span></a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="index.html#destinations" class="nav-link">Destinations</a></li>
+                <li class="nav-item"><a href="index.html#culture" class="nav-link">Culture</a></li>
+                <li class="nav-item"><a href="index.html#travel-info" class="nav-link">Travel Info</a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="gallery-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Photo Gallery</h2>
+                <p>Immerse yourself in the colors, landscapes, and moments that make Ghana unforgettable</p>
+            </div>
+            
+            <div class="gallery-filters">
+                <button class="gallery-filter active" data-filter="all">All</button>
+                <button class="gallery-filter" data-filter="nature">Nature & Wildlife</button>
+                <button class="gallery-filter" data-filter="culture">Culture & People</button>
+                <button class="gallery-filter" data-filter="heritage">Heritage Sites</button>
+                <button class="gallery-filter" data-filter="beaches">Beaches</button>
+                <button class="gallery-filter" data-filter="food">Food & Cuisine</button>
+                <button class="gallery-filter" data-filter="cities">Cities</button>
+            </div>
+            
+            <div class="gallery-container">
+                <div class="gallery-item large" data-category="nature">
+                    <img src="ELEPHANT.jpg" alt="Mole National Park Elephants">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Elephants at Sunrise</div>
+                        <div class="gallery-item-location">Mole National Park</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="nature">
+                    <img src="kakumm.jpg" alt="Kakum National Park Canopy Walkway">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Canopy Walkway</div>
+                        <div class="gallery-item-location">Kakum National Park</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="nature">
+                    <img src="volta.jpg" alt="Lake Volta">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Sunset Over Lake Volta</div>
+                        <div class="gallery-item-location">Eastern Region</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item tall" data-category="nature">
+                    <img src="wli.jpg" alt="Wli Waterfalls">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Wli Waterfalls</div>
+                        <div class="gallery-item-location">Volta Region</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item wide" data-category="culture">
+                    <img src="DANCE.jpg" alt="Traditional Dance">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Adowa Dance Performance</div>
+                        <div class="gallery-item-location">Kumasi Cultural Center</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="culture">
+                    <img src="kente.jpg" alt="Kente Weaving">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Kente Cloth Weaving</div>
+                        <div class="gallery-item-location">Bonwire Village</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="culture">
+                    <img src="chief.jpg" alt="Traditional Chief">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Traditional Chief in Ceremonial Attire</div>
+                        <div class="gallery-item-location">Ashanti Region</div>
+                    </div>
+                </div>
+                
+
+                <div class="gallery-item" data-category="heritage">
+                    <img src="cape1.jpg" alt="Cape Coast Castle">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Cape Coast Castle</div>
+                        <div class="gallery-item-location">Cape Coast</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item wide" data-category="heritage">
+                    <img src="elmina.jpg" alt="Elmina Castle">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Elmina Castle</div>
+                        <div class="gallery-item-location">Elmina</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="heritage">
+                    <img src="mosq.jpg" alt="Larabanga Mosque">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Larabanga Mosque</div>
+                        <div class="gallery-item-location">Northern Region</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item tall" data-category="beaches">
+                    <img src="busua.jpg" alt="Busua Beach">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Golden Sands</div>
+                        <div class="gallery-item-location">Busua Beach</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item wide" data-category="beaches">
+                    <img src="kokro.jpg" alt="Kokrobite Beach">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Palm-lined Shore</div>
+                        <div class="gallery-item-location">Kokrobite Beach</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="beaches">
+                    <img src="ada beach.jpg" alt="Ada Estuary">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Where River Meets Ocean</div>
+                        <div class="gallery-item-location">Ada Estuary</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="food">
+                    <img src="joll1.jpg" alt="Jollof Rice">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Ghanaian Jollof Rice</div>
+                        <div class="gallery-item-location">Local Restaurant</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="food">
+                    <img src="fufu.jpg" alt="Fufu and Soup">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Fufu with Light Soup</div>
+                        <div class="gallery-item-location">Traditional Eatery</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="food">
+                    <img src="kele.jpg" alt="Kelewele">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Spicy Kelewele</div>
+                        <div class="gallery-item-location">Street Food Market</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item wide" data-category="food">
+                    <img src="makola.jpg" alt="Makola Market">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Vibrant Food Market</div>
+                        <div class="gallery-item-location">Makola Market, Accra</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item large" data-category="cities">
+                    <img src="skyline.jpg" alt="Accra Skyline">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Accra Skyline at Dusk</div>
+                        <div class="gallery-item-location">Capital City</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="cities">
+                    <img src="inde square.jpg" alt="Independence Square">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Independence Square</div>
+                        <div class="gallery-item-location">Accra</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="cities">
+                    <img src="keje.jpg" alt="Kejetia Market">
+                    <div class="gallery-overlay">
+                        <div class="gallery-item-title">Kejetia Market</div>
+                        <div class="gallery-item-location">Kumasi</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="load-more">
+                <button class="btn" id="loadMoreBtn">Load More Photos</button>
+            </div>
+        </div>
+    </section>
+    
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">×</button>
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+            <div class="lightbox-nav">
+                <button id="prevBtn">←</button>
+                <button id="nextBtn">→</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="back-to-home">
+                <a href="index.html" class="btn">Back to Homepage</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Discover Ghana. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+            
+            const filters = document.querySelectorAll('.gallery-filter');
+            const items = document.querySelectorAll('.gallery-item');
+            
+            filters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    // Update active state
+                    filters.forEach(f => f.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-filter');
+                    
+                    items.forEach(item => {
+                        if (category === 'all' || item.getAttribute('data-category') === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentIndex = 0;
+            
+            items.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    const title = this.querySelector('.gallery-item-title').textContent;
+                    const location = this.querySelector('.gallery-item-location').textContent;
+                    
+                    lightboxImg.src = imgSrc;
+                    lightboxCaption.textContent = `${title} - ${location}`;
+                    lightbox.classList.add('active');
+                    currentIndex = index;
+                    
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateLightbox();
+            });
+
+            prevBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                updateLightbox();
+            });
+            
+            function updateLightbox() {
+                const currentItem = items[currentIndex];
+
+                if (currentItem.style.display !== 'none') {
+                    const imgSrc = currentItem.querySelector('img').src;
+                    const title = currentItem.querySelector('.gallery-item-title').textContent;
+                    const location = currentItem.querySelector('.gallery-item-location').textContent;
+                    
+                    lightboxImg.src = imgSrc;
+                    lightboxCaption.textContent = `${title} - ${location}`;
+                } else {
+
+                    nextBtn.click();
+                }
+            }
+            
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                } else if (e.key === 'ArrowRight') {
+                    nextBtn.click();
+                } else if (e.key === 'ArrowLeft') {
+                    prevBtn.click();
+                }
+            });
+            
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            let clickCount = 0;
+            
+            loadMoreBtn.addEventListener('click', function() {
+                clickCount++;
+                if (clickCount >= 2) {
+                    this.textContent = 'No More Photos';
+                    this.disabled = true;
+                    this.style.opacity = '0.5';
+                    return;
+                }
+                
+                const galleryContainer = document.querySelector('.gallery-container');
+                
+                const newItems = [
+                    {
+                        src: '/api/placeholder/300/300',
+                        title: 'Boti Falls',
+                        location: 'Eastern Region',
+                        category: 'nature'
+                    },
+                    {
+                        src: '/api/placeholder/300/300',
+                        title: 'Traditional Pottery Making',
+                        location: 'Vume, Volta Region',
+                        category: 'culture',
+                        wide: true
+                    },
+                    {
+                        src: '/api/placeholder/300/300',
+                        title: 'Paga Crocodile Pond',
+                        location: 'Upper East Region',
+                        category: 'nature'
+                    },
+                    {
+                        src: '/api/placeholder/300/300',
+                        title: 'Manhyia Palace',
+                        location: 'Kumasi',
+                        category: 'heritage'
+                    }
+                ];
+                
+                newItems.forEach(item => {
+                    const newItem = document.createElement('div');
+                    newItem.className = `gallery-item${item.wide ? ' wide' : ''}${item.tall ? ' tall' : ''}${item.large ? ' large' : ''}`;
+                    newItem.setAttribute('data-category', item.category);
+                    
+                    const activeFilter = document.querySelector('.gallery-filter.active');
+                    if (activeFilter.getAttribute('data-filter') !== 'all' && 
+                        activeFilter.getAttribute('data-filter') !== item.category) {
+                        newItem.style.display = 'none';
+                    }
+                    
+                    newItem.innerHTML = `
+                        <img src="${item.src}" alt="${item.title}">
+                        <div class="gallery-overlay">
+                            <div class="gallery-item-title">${item.title}</div>
+                            <div class="gallery-item-location">${item.location}</div>
+                        </div>
+                    `;
+                    
+                    galleryContainer.appendChild(newItem);
+                    
+                    newItem.addEventListener('click', function() {
+                        const imgSrc = this.querySelector('img').src;
+                        const title = this.querySelector('.gallery-item-title').textContent;
+                        const location = this.querySelector('.gallery-item-location').textContent;
+                        
+                        lightboxImg.src = imgSrc;
+                        lightboxCaption.textContent = `${title} - ${location}`;
