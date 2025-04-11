@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo Gallery - Discover Ghana</title>
+    <link rel="stylesheet" href="Gallery.css">
 </head>
 <body>
     <header>
@@ -238,42 +239,27 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navMenu = document.getElementById('navMenu');
             
             mobileMenuBtn.addEventListener('click', function() {
                 navMenu.classList.toggle('active');
             });
-           
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        navMenu.classList.remove('active');
-                    }
-                });
-            });
-            
             
             const filters = document.querySelectorAll('.gallery-filter');
             const items = document.querySelectorAll('.gallery-item');
-            let visibleItems = Array.from(items); // 
             
             filters.forEach(filter => {
                 filter.addEventListener('click', function() {
-                    
+                    // Update active state
                     filters.forEach(f => f.classList.remove('active'));
                     this.classList.add('active');
                     
                     const category = this.getAttribute('data-filter');
                     
-                    
-                    visibleItems = [];
                     items.forEach(item => {
                         if (category === 'all' || item.getAttribute('data-category') === category) {
                             item.style.display = 'block';
-                            visibleItems.push(item);
                         } else {
                             item.style.display = 'none';
                         }
@@ -281,7 +267,6 @@
                 });
             });
             
-        
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightboxImg');
             const lightboxCaption = document.getElementById('lightboxCaption');
@@ -290,81 +275,71 @@
             const nextBtn = document.getElementById('nextBtn');
             let currentIndex = 0;
             
-            
             items.forEach((item, index) => {
                 item.addEventListener('click', function() {
-                    openLightbox(this);
+                    const imgSrc = this.querySelector('img').src;
+                    const title = this.querySelector('.gallery-item-title').textContent;
+                    const location = this.querySelector('.gallery-item-location').textContent;
+                    
+                    lightboxImg.src = imgSrc;
+                    lightboxCaption.textContent = `${title} - ${location}`;
+                    lightbox.classList.add('active');
+                    currentIndex = index;
+                    
+                    document.body.style.overflow = 'hidden';
                 });
             });
             
-            function openLightbox(item) {
-                const imgSrc = item.querySelector('img').src;
-                const title = item.querySelector('.gallery-item-title').textContent;
-                const location = item.querySelector('.gallery-item-location').textContent;
-                
-                lightboxImg.src = imgSrc;
-                lightboxCaption.textContent = `${title} - ${location}`;
-                lightbox.classList.add('active');
-                
-            
-                currentIndex = visibleItems.indexOf(item);
-                
-                document.body.style.overflow = 'hidden';
-            }
-            
-            
-            lightboxClose.addEventListener('click', closeLightbox);
-            
-            function closeLightbox() {
+            lightboxClose.addEventListener('click', function() {
                 lightbox.classList.remove('active');
                 document.body.style.overflow = 'auto';
-            }
-            
+            });
             
             nextBtn.addEventListener('click', function() {
-                if (visibleItems.length <= 1) return;
-                
-                currentIndex = (currentIndex + 1) % visibleItems.length;
+                currentIndex = (currentIndex + 1) % items.length;
                 updateLightbox();
             });
 
             prevBtn.addEventListener('click', function() {
-                if (visibleItems.length <= 1) return;
-                
-                currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
                 updateLightbox();
             });
             
             function updateLightbox() {
-                const currentItem = visibleItems[currentIndex];
-                const imgSrc = currentItem.querySelector('img').src;
-                const title = currentItem.querySelector('.gallery-item-title').textContent;
-                const location = currentItem.querySelector('.gallery-item-location').textContent;
-                
-                lightboxImg.src = imgSrc;
-                lightboxCaption.textContent = `${title} - ${location}`;
+                const currentItem = items[currentIndex];
+
+                if (currentItem.style.display !== 'none') {
+                    const imgSrc = currentItem.querySelector('img').src;
+                    const title = currentItem.querySelector('.gallery-item-title').textContent;
+                    const location = currentItem.querySelector('.gallery-item-location').textContent;
+                    
+                    lightboxImg.src = imgSrc;
+                    lightboxCaption.textContent = `${title} - ${location}`;
+                } else {
+
+                    nextBtn.click();
+                }
             }
-            
             
             lightbox.addEventListener('click', function(e) {
                 if (e.target === lightbox) {
-                    closeLightbox();
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
                 }
             });
-            
             
             document.addEventListener('keydown', function(e) {
                 if (!lightbox.classList.contains('active')) return;
                 
                 if (e.key === 'Escape') {
-                    closeLightbox();
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
                 } else if (e.key === 'ArrowRight') {
                     nextBtn.click();
                 } else if (e.key === 'ArrowLeft') {
                     prevBtn.click();
                 }
             });
-            
             
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             let clickCount = 0;
@@ -379,31 +354,29 @@
                 }
                 
                 const galleryContainer = document.querySelector('.gallery-container');
-                const activeFilter = document.querySelector('.gallery-filter.active');
-                const filterCategory = activeFilter.getAttribute('data-filter');
                 
                 const newItems = [
                     {
-                        src: '/api/placeholder/400/300',
+                        src: '/api/placeholder/300/300',
                         title: 'Boti Falls',
                         location: 'Eastern Region',
                         category: 'nature'
                     },
                     {
-                        src: '/api/placeholder/600/300',
+                        src: '/api/placeholder/300/300',
                         title: 'Traditional Pottery Making',
                         location: 'Vume, Volta Region',
                         category: 'culture',
                         wide: true
                     },
                     {
-                        src: '/api/placeholder/400/300',
+                        src: '/api/placeholder/300/300',
                         title: 'Paga Crocodile Pond',
                         location: 'Upper East Region',
                         category: 'nature'
                     },
                     {
-                        src: '/api/placeholder/400/300',
+                        src: '/api/placeholder/300/300',
                         title: 'Manhyia Palace',
                         location: 'Kumasi',
                         category: 'heritage'
@@ -415,11 +388,10 @@
                     newItem.className = `gallery-item${item.wide ? ' wide' : ''}${item.tall ? ' tall' : ''}${item.large ? ' large' : ''}`;
                     newItem.setAttribute('data-category', item.category);
                     
-                    
-                    if (filterCategory !== 'all' && filterCategory !== item.category) {
+                    const activeFilter = document.querySelector('.gallery-filter.active');
+                    if (activeFilter.getAttribute('data-filter') !== 'all' && 
+                        activeFilter.getAttribute('data-filter') !== item.category) {
                         newItem.style.display = 'none';
-                    } else {
-                        visibleItems.push(newItem); 
                     }
                     
                     newItem.innerHTML = `
@@ -432,31 +404,10 @@
                     
                     galleryContainer.appendChild(newItem);
                     
-                    
                     newItem.addEventListener('click', function() {
-                        openLightbox(this);
-                    });
-                });
-            });
-            
-            
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                }
-                
-                
-                if (window.innerWidth <= 992) {
-                    document.querySelectorAll('.gallery-item.wide, .gallery-item.large').forEach(item => {
-                        item.style.gridColumn = 'auto';
-                    });
-                    
-                    document.querySelectorAll('.gallery-item.tall, .gallery-item.large').forEach(item => {
-                        item.style.gridRow = 'auto';
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                        const imgSrc = this.querySelector('img').src;
+                        const title = this.querySelector('.gallery-item-title').textContent;
+                        const location = this.querySelector('.gallery-item-location').textContent;
+                        
+                        lightboxImg.src = imgSrc;
+                        lightboxCaption.textContent = `${title} - ${location}`;
