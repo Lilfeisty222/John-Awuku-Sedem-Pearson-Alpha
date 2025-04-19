@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the beauty, culture, and wildlife of Ghana through our stunning photo collection showcasing the best destinations across the country.">
     <title>Photo Gallery - Discover Ghana</title>
     <link rel="stylesheet" href="Gallery.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
@@ -16,13 +18,19 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">DI BTEC PROJECT <span>LEVEL 3</span></a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+                <span class="hamburger-icon">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </span>
+            </button>
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="index.html#destinations" class="nav-link">Destinations</a></li>
                 <li class="nav-item"><a href="index.html#culture" class="nav-link">Culture</a></li>
                 <li class="nav-item"><a href="index.html#travel-info" class="nav-link">Travel Info</a></li>
-                <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link active">Gallery</a></li>
                 <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
@@ -102,7 +110,6 @@
                     </div>
                 </div>
                 
-
                 <div class="gallery-item" data-category="heritage">
                     <img src="cape1.jpg" alt="Cape Coast Castle">
                     <div class="gallery-overlay">
@@ -209,19 +216,19 @@
             </div>
             
             <div class="load-more">
-                <a href="https://www.pinterest.com/search/pins/?q=Ghana%20tourism&rs=srs&b_id=5424068611188927807&source_id=5424068632500183951&request_params=%7B%227%22%3A%20%225424068632500183951%22%2C%20%221%22%3A%20%22139%22%2C%20%228%22%3A%20%225424068611188927807%22%7D&view_parameter_type=3903&pins_display=3&quick_save_icon=1" class="btn">Load More Images</a>
+                <a href="https://www.pinterest.com/search/pins/?q=Epic%20Tourist%20attractions%20in%20Ghana&rs=typed" class="btn">Load More Images</a>
             </div>
         </div>
     </section>
     
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
-            <button class="lightbox-close" id="lightboxClose">×</button>
+            <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">×</button>
             <img class="lightbox-img" id="lightboxImg" src="" alt="">
             <div class="lightbox-caption" id="lightboxCaption"></div>
             <div class="lightbox-nav">
-                <button id="prevBtn">←</button>
-                <button id="nextBtn">→</button>
+                <button id="prevBtn" aria-label="Previous image">←</button>
+                <button id="nextBtn" aria-label="Next image">→</button>
             </div>
         </div>
     </div>
@@ -239,19 +246,22 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+        
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navMenu = document.getElementById('navMenu');
             
             mobileMenuBtn.addEventListener('click', function() {
                 navMenu.classList.toggle('active');
+                mobileMenuBtn.classList.toggle('active');
             });
             
+      
             const filters = document.querySelectorAll('.gallery-filter');
             const items = document.querySelectorAll('.gallery-item');
             
             filters.forEach(filter => {
                 filter.addEventListener('click', function() {
-                    // Update active state
+               
                     filters.forEach(f => f.classList.remove('active'));
                     this.classList.add('active');
                     
@@ -267,6 +277,7 @@
                 });
             });
             
+       
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightboxImg');
             const lightboxCaption = document.getElementById('lightboxCaption');
@@ -274,9 +285,18 @@
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             let currentIndex = 0;
+            let visibleItems = [];
+            
+            function updateVisibleItems() {
+                visibleItems = Array.from(items).filter(item => item.style.display !== 'none');
+                return visibleItems;
+            }
             
             items.forEach((item, index) => {
                 item.addEventListener('click', function() {
+                    updateVisibleItems();
+                    const visibleIndex = visibleItems.indexOf(this);
+                    
                     const imgSrc = this.querySelector('img').src;
                     const title = this.querySelector('.gallery-item-title').textContent;
                     const location = this.querySelector('.gallery-item-location').textContent;
@@ -284,7 +304,7 @@
                     lightboxImg.src = imgSrc;
                     lightboxCaption.textContent = `${title} - ${location}`;
                     lightbox.classList.add('active');
-                    currentIndex = index;
+                    currentIndex = visibleIndex;
                     
                     document.body.style.overflow = 'hidden';
                 });
@@ -296,29 +316,25 @@
             });
             
             nextBtn.addEventListener('click', function() {
-                currentIndex = (currentIndex + 1) % items.length;
+                updateVisibleItems();
+                currentIndex = (currentIndex + 1) % visibleItems.length;
                 updateLightbox();
             });
 
             prevBtn.addEventListener('click', function() {
-                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                updateVisibleItems();
+                currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
                 updateLightbox();
             });
             
             function updateLightbox() {
-                const currentItem = items[currentIndex];
-
-                if (currentItem.style.display !== 'none') {
-                    const imgSrc = currentItem.querySelector('img').src;
-                    const title = currentItem.querySelector('.gallery-item-title').textContent;
-                    const location = currentItem.querySelector('.gallery-item-location').textContent;
-                    
-                    lightboxImg.src = imgSrc;
-                    lightboxCaption.textContent = `${title} - ${location}`;
-                } else {
-
-                    nextBtn.click();
-                }
+                const currentItem = visibleItems[currentIndex];
+                const imgSrc = currentItem.querySelector('img').src;
+                const title = currentItem.querySelector('.gallery-item-title').textContent;
+                const location = currentItem.querySelector('.gallery-item-location').textContent;
+                
+                lightboxImg.src = imgSrc;
+                lightboxCaption.textContent = `${title} - ${location}`;
             }
             
             lightbox.addEventListener('click', function(e) {
@@ -341,6 +357,7 @@
                 }
             });
             
+        
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             let clickCount = 0;
             
@@ -357,26 +374,26 @@
                 
                 const newItems = [
                     {
-                        src: '/api/placeholder/300/300',
+                        src: 'boti-falls.jpg', 
                         title: 'Boti Falls',
                         location: 'Eastern Region',
                         category: 'nature'
                     },
                     {
-                        src: '/api/placeholder/300/300',
+                        src: 'pottery.jpg', 
                         title: 'Traditional Pottery Making',
                         location: 'Vume, Volta Region',
                         category: 'culture',
                         wide: true
                     },
                     {
-                        src: '/api/placeholder/300/300',
+                        src: 'paga.jpg', 
                         title: 'Paga Crocodile Pond',
                         location: 'Upper East Region',
                         category: 'nature'
                     },
                     {
-                        src: '/api/placeholder/300/300',
+                        src: 'manhyia.jpg', 
                         title: 'Manhyia Palace',
                         location: 'Kumasi',
                         category: 'heritage'
@@ -405,9 +422,25 @@
                     galleryContainer.appendChild(newItem);
                     
                     newItem.addEventListener('click', function() {
+                        updateVisibleItems();
+                        const visibleIndex = visibleItems.indexOf(this);
+                        
                         const imgSrc = this.querySelector('img').src;
                         const title = this.querySelector('.gallery-item-title').textContent;
                         const location = this.querySelector('.gallery-item-location').textContent;
                         
                         lightboxImg.src = imgSrc;
                         lightboxCaption.textContent = `${title} - ${location}`;
+                        lightbox.classList.add('active');
+                        currentIndex = visibleIndex;
+                        
+                        document.body.style.overflow = 'hidden';
+                    });
+                });
+        
+                updateVisibleItems();
+            });
+        });
+    </script>
+</body>
+</html>
